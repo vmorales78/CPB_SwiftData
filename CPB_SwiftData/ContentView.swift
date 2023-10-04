@@ -27,34 +27,43 @@ struct ContentView: View {
             TextField("add college URL", text: $URLEntered)
             
             Button(action: {
-                print("here")
 //                guard let aURL = URLEntered else { return }
-                print("1")
                 let collegeInformationn =
                 CollegeInformation(name: nameEntered, location: locationEntered, numberOStudents: numberOfStudentsEntered, theURL: URLEntered)
-                print("2")
                 context.insert(collegeInformationn)
-                print("3")
                 nameEntered = ""
                 locationEntered = ""
                 numberOfStudentsEntered = 0
 //                URLEntered = URL(string: "")
                 URLEntered = ""
-                print("4")
                 
             }, label: {
                 Text("Button")
             })
             List {
                 ForEach(information) { theInformation in
-                    Text(theInformation.name)
-                    Text(theInformation.location)
-//                    Text(theInformation.numberOfStudents)
-//                    Text(theInformation.theURL)
-                } 
-//                .onDelete(perform: )
-//                    context.delete())
-                    
+                    HStack {
+                        VStack {
+                            Text(theInformation.name)
+                            Text(theInformation.location)
+//                                                Text(theInformation.numberOfStudents)
+//                                                Text(theInformation.theURL)
+                            
+                        }
+                            Button {
+                                context.delete(theInformation)
+                                print("deleted")
+                            } label: {
+                                Text("delete")
+                                
+                            }
+                        
+                    }
+
+                }
+//                .onTapGesture {
+//                    context.delete(<#T##model: PersistentModel##PersistentModel#>)
+//                }
                 
             }
             
